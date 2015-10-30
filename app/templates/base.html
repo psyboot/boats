@@ -1,0 +1,32 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Home</title>
+    {% endif %}
+    <!-- Bootstrap --> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my.css') }}">
+  </head>
+  <body>
+  <div class="container">
+  <div class="row">
+  <div class="col-sm-12">    
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+   </div>
+   </div>
+
+    {% block content %}{% endblock %}
+    </div>
+  </body>
+  </div>
+</html>

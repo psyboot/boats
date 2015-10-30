@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+
+		}
+	],
+
+    "settings": {
+    "python_interpreter": "flaskboats/python"
+    }
+}
