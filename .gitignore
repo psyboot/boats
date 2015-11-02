@@ -1,3 +1,4 @@
 #virtualenv for python 3 windows
 /flaskboats/*
+/boats/*
 *.pyc

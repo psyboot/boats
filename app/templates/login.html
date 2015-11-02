@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %} 
+<h1>Вход.</h1>
+<div class="row">
+<div class="col-md-12">
+	<form action="" method="post" name="login">
+      {{ form.hidden_tag() }}
+      <p>
+          Логин:<br>
+          {{ form.login(size=80) }}<br>
+      </p>
+      <p>
+          Пароль:<br>
+          {{ form.password(size=80) }}<br>
+      </p>
+      <p>{{ form.remember_me }} Remember Me</p>
+      <p><input type="submit" value="Sign In"></p>
+  </form>
+</div>
+</div>
+{% endblock %}
