@@ -13,11 +13,11 @@
                 </tr>
             </thead>
 {% for boat in boats %}
-            <tr class="sea{{boats.sea}}">
+            <tr class="{% if boat.sea %}seatrue{% else %}seafalse{% endif %}">
                 <td> {{ boat.name }}</td>
                 <td> {{ boat.number }}</td>
                 <td>
-                    <input type="checkbox" {% if boat.sea %}checked{% endif %}>
+                    <input type="checkbox" {% if boat.sea %}checked {% endif %}>
                 </td>
             </tr>
 {% endfor %}

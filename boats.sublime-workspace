@@ -4,12 +4,24 @@
 		"selected_items":
 		[
 			[
-				"ed",
-				"editSea"
+				"Lo",
+				"LoginForm"
+			],
+			[
+				"log",
+				"login_user"
 			],
 			[
 				"lo",
-				"loads〔function〕"
+				"login"
+			],
+			[
+				"login",
+				"login_required"
+			],
+			[
+				"ed",
+				"editSea"
 			],
 			[
 				"for",
@@ -160,15 +172,83 @@
 	"buffers":
 	[
 		{
+<<<<<<< HEAD
 			"contents": "Package Control Messages\n========================\n\nBracketHighlighter\n------------------\n\n  # BracketHighlighter 2.10.0\n  \n  ## New\n  \n  - Add bh_tag settings to settings dropdown\n  - Add more Python languages\n  - Add support for JSP\n  - Better python triple quote support string support\n  - Experimental block cursor mode (read docs for more info)\n  \n  ## Fixes\n  \n  - Fix backref's escaping of extended backrefs\n",
 			"settings":
 			{
 				"buffer_size": 414,
 				"line_ending": "Windows",
+=======
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 1541,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "todo.org",
+			"settings":
+			{
+				"buffer_size": 17,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nToDone\n------\n\n  \n  \n  #\n  #	NOTE: A restart is required after installation.\n  #\n  \n  \n  This document details the syntax. Left-aligned texts are considered headings.\n  \n  /*\n  	Offset headings can be created by enclosing text in forward-slashes\n  	and asterisks\n  */\n  \n  \n  Getting started\n  -	Create a task by adding a '-' in front of it\n  ----	Add hyphens to change the color\n  	-----	5 looks urgent\n  	----	4 for important items\n  	---	3 for the middle\n  	--	2 for the pretty light stuff\n  	-	1 for the low-priority or easy stuff\n  -4	Alternatively, you can add a number after one hyphen\n  	-3	This starts with a `-3`\n  	-2	`-2` is the same `--`\n  	-1	etc...\n  	-	This is new in 1.0.5\n  \n  \n  Notes\n  -3	A task can have notes: by adding a ':' then add text\n  -3	Or by adding the notes under the task\n  	Like these notes. Notes can have `emphasis` by adding slanted quotes.\n  \n  \n  Sub-tasks\n  -4	A task can have sub-tasks\n  	-2	Sub tasks are indented\n  	-1	And they can have: notes - just like any task\n  		-3	Or 3rd level sub-tasks\n  			With notes underneath\n  \n  \n  Completed items have a '+'\n  +-2	This item is finished because it starts with a'+'\n  	-3	This sub-task is finished bc it's parent is\n  -2	Completion applies to sub-tasks\n  -3	Use the keys `cmd /` shortcut to toggle completion\n  	It's just like toggling a comment\n  \n  \n  State of emergency\n  !-3	Emergency / Disaster: This item is in a state of emergency.\n  	It's in the emergency state because of the `leading exclamation mark`.\n  	----	The emergency will apply to any sub-tasks\n  	--	Like these two\n  +!--	A completed emergency task\n  	This emergency item was handled.\n  \n  \n  Ignored tasks by adding a leading '.'\n  .--	This item is ignored because it starts with a `period`\n  ----	Ignoring applies to sub-tasks\n  	.---	This sub-task is ignored\n  		---	This sub-sub-task is ignored bc its parent is\n  --	Include a reason for ignoring it\n  .----	(Reason for ignoring) Ignored items can have a note in parentheses\n  	so you can save a note indicating why it's being ignored\n  \n  \n  The symbol list\n  ----	To skim current tasks\n  	use the `cmd r` shortcut to see an outline (notes are omited)\n  \n  \n  Hard-tabs at 8-width or 5-width\n  ----	A hard-tab at 8-space width AFTER the '-'s\n  	`Why?`\n  		The task titles will always line up.\n  	`Why hard-tabs?`\n  		The alignment of the title won't re-adjust when you change\n  		the number of dashes, add an exclamation mark or plus-sign.\n  	`Why 8-space width?`\n  		8 is the right number because there is a max of 7 token characters\n  		that might precede the task-title. 7 because you can have up\n  		to `5` dashes + `1` exclamation mark + `1` plus-sign. Tabs\n  		that are `8` spaces wide allows there to always be at least one\n  		an extra space between the tokens and the task title:\n  	+!-----	A title here\n  	--	A title here\n  		^ `sweet alignment`\n  \n  -4	Alternatively, Hard-tabs at 5-space width\n  	If the `-4` pattern is used then 5 characters allows for:\n  	-	`+` or `.`  token\n  	-	! token\n  	-	- token\n  	-	A number\n  	-	A final space to separate the title\n  	.!-4	(for example)\n  	-3	The default Tab Size can be changed via the menu option:\n  		-	Sublime Text\n  		-	Preferences\n  		-	Package Settings\n  		-	ToDone\n  		-	Settings - User\n  		-2	And adding the following to the file: `\n  			{\n  			    // The number of spaces a tab is considered equal to\n  			    \"tab_size\": 5\n  			}`\n  \n  \n  More expressive notes\n  ---	If you need more complex notes: ///\n  	An `explicit note` is started by the `///` characters.\n  	An explicit note can have lines that start with a `-` or `+`.\n  	Explicit notes end when another `///` is encountered.\n  #	Whitespace is ignored\n  	- some simple notes\n  	- that aren't considered tasks\n  	- but are a list\n  	///\n",
+			"settings":
+			{
+				"buffer_size": 3825,
+				"line_ending": "Unix",
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 				"name": "Package Control Messages",
 				"read_only": true,
 				"scratch": true
 			}
+<<<<<<< HEAD
+=======
+		},
+		{
+			"file": "config.py",
+			"settings":
+			{
+				"buffer_size": 87,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/__init__.py",
+			"settings":
+			{
+				"buffer_size": 103,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/forms.py",
+			"settings":
+			{
+				"buffer_size": 2717,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/login.py",
+			"settings":
+			{
+				"buffer_size": 401,
+				"line_ending": "Unix",
+				"name": "class User(UserMixin):"
+			}
+		},
+		{
+			"file": "app/templates/login.html",
+			"settings":
+			{
+				"buffer_size": 484,
+				"line_ending": "Unix"
+			}
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 		}
 	],
 	"build_system": "",
@@ -178,6 +258,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
+<<<<<<< HEAD
 		"height": 443.0,
 		"last_filter": "",
 		"selected_items":
@@ -189,9 +270,26 @@
 			[
 				"pa",
 				"Package Control: Disable Package"
-			],
+=======
+		"height": 354.0,
+		"last_filter": "ins",
+		"selected_items":
+		[
 			[
 				"ins",
+				"Package Control: Install Package"
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"orgmo",
+				"Set Syntax: orgmode"
+			],
+			[
+				"insta",
 				"Package Control: Install Package"
 			],
 			[
@@ -271,7 +369,11 @@
 				"Package Control: Install Package"
 			]
 		],
+<<<<<<< HEAD
 		"width": 626.0
+=======
+		"width": 431.0
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 	},
 	"console":
 	{
@@ -308,6 +410,7 @@
 	},
 	"expanded_folders":
 	[
+<<<<<<< HEAD
 	],
 	"file_history":
 	[
@@ -333,6 +436,20 @@
 		"/C/Users/psy/Documents/projects/boats/requirements.txt",
 		"/C/Users/psy/AppData/Roaming/Sublime Text 3/Packages/AutoFileName/autofilename.sublime-settings",
 		"/C/Users/psy/Documents/projects/angular2/requirements.txt",
+=======
+		"/home/talov/projects/boats",
+		"/home/talov/projects/boats/app",
+		"/home/talov/projects/boats/app/templates"
+	],
+	"file_history":
+	[
+		"/home/talov/projects/boats/.gitignore",
+		"/home/talov/projects/boats/app/templates/index.html",
+		"/home/talov/projects/boats/app/static/css/my.css",
+		"/home/talov/projects/boats/app/templates/base.html",
+		"/home/talov/projects/boats/requirements.txt",
+		"/home/talov/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 		"/C/Users/psy/Documents/projects/angular2/app/viborka.py",
 		"/C/opros/opr/flaskpoll/app/views.py",
 		"/C/Users/psy/Documents/projects/angular2/app/templates/viborka.html",
@@ -438,7 +555,24 @@
 		"/C/opros/opr15_57/15-57/2/kostromskoi.txt",
 		"/C/opros/opr15_57/15-57/2/sudislavl.txt",
 		"/C/opros/opr15_57/15-57/2/krasnoe.txt",
+<<<<<<< HEAD
 		"/C/opros/opr15_57/15-57/2/makariev.txt"
+=======
+		"/C/opros/opr15_57/15-57/2/makariev.txt",
+		"/C/opros/opr15_57/15-57/2/parfenevo1.txt",
+		"/C/opros/opr15_57/15-57/2/susanino.txt",
+		"/C/opros/opr15_57/15-57/2/bui.txt",
+		"/C/opros/opr/flaskpoll/in/KOSTROMA_89.txt",
+		"/C/opros/opr/flaskpoll/in/kostroma2.txt",
+		"/C/opros/opr/flaskpoll/in/kostroma2",
+		"/C/opros/opr/flaskpoll/in/KOSTROMA.txt",
+		"/C/opros/opr/flaskpoll/in/susanino.txt",
+		"/C/opros/opr/flaskpoll/in/sudislavl.txt",
+		"/C/opros/opr/flaskpoll/in/sharya.txt",
+		"/C/opros/opr/flaskpoll/in/parfenevo1.txt",
+		"/C/opros/opr/flaskpoll/in/makariev.txt",
+		"/C/opros/opr/flaskpoll/in/kostromskoi.txt"
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 	],
 	"find":
 	{
@@ -729,27 +863,45 @@
 	"groups":
 	[
 		{
+<<<<<<< HEAD
 			"selected": 0,
+=======
+			"selected": 2,
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 			"sheets":
 			[
 				{
 					"buffer": 0,
+<<<<<<< HEAD
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 414,
+=======
+					"file": "app/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1541,
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								414,
 								414
+=======
+								162,
+								162
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 							]
 						],
 						"settings":
 						{
+<<<<<<< HEAD
 							"BracketHighlighterBusy": false,
 							"auto_indent": false,
 							"bh_regions":
@@ -811,16 +963,228 @@
 								"bh_tag_content"
 							],
 							"default_dir": "C:\\Users\\psy\\Documents\\projects\\boats",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_width": 2,
-							"word_wrap": true
+=======
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 337.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "todo.org",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3825,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2104,
+								2104
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"default_dir": "/home/talov/projects/boats",
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+<<<<<<< HEAD
+						"translation.y": 0.0,
+=======
+						"translation.y": 649.0,
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
 					"type": "text"
+<<<<<<< HEAD
+=======
+				},
+				{
+					"buffer": 3,
+					"file": "config.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 87,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 103,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								47,
+								47
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/forms.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2717,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								179,
+								179
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/login.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"auto_name": "class User(UserMixin):",
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/templates/login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 484,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								319,
+								319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+>>>>>>> 925ec709d015feb577de8f2a1be56492a5fb894d
 				}
 			]
 		}
