@@ -1,21 +1,24 @@
 # -*- coding: utf-8 -*-
-from flask import render_template,redirect
+from flask import render_template, redirect
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
-from login import User
+from .login import User
 from .forms import LoginForm
 from app import app
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 @login_manager.user_loader
 def load_user(userid):
     return redirect('/login')
+
 
 @app.route('/')
 @login_required
 def root():
     return "Root!"
+
 
 @app.route('/login',methods=['GET', 'POST'])
 def login():
@@ -30,10 +33,11 @@ def login():
             if (user.password == password):
                 login_user(user)
                 return redirect('/index')
-    return render_template('login.html', 
+    return render_template('login.html',
                            title='Sign In',
                            form=form)
-   
+
+
 @app.route('/index')
 def index():
     #fake database
