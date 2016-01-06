@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% block content %}      
-<h1>Hello, {{ user.login }} </h1>
+{% block content %}
+<h1>В море: {{ insea }}</h1>
+<h1>В порту: {{ notinsea }}</h1>
 
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Имя</th>                   
+                    <th>Имя</th>
                     <th>Номер лодки</th>
                     <th>В море?</th>
                 </tr>
@@ -17,7 +18,7 @@
                 <td> {{ boat.name }}</td>
                 <td> {{ boat.number }}</td>
                 <td>
-                    <input type="checkbox" {% if boat.sea %}checked {% endif %}>
+                    <input type="checkbox" id="checksea" {% if boat.sea %}checked {% endif %}>
                 </td>
             </tr>
 {% endfor %}

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect
+from flask import render_template, redirect, jsonify, request
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
 from .login import User
 from .forms import LoginForm
+from .storeboats import Store
 from app import app
 
 login_manager = LoginManager()
@@ -15,12 +16,15 @@ def load_user(userid):
 
 
 @app.route('/')
-@login_required
+# @login_required
 def root():
-    return "Root!"
+    stboats = Store()
+    stboats.loadboats()
+    return render_template('indexangular.html',
+                           title='Boats!', insea=stboats.insea, notinsea=stboats.notinsea)
 
 
-@app.route('/login',methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -29,7 +33,7 @@ def login():
         remember_me = str(form.remember_me.data)
         user_entry = User.get(login)
         if (user_entry is not None):
-            user = User(user_entry[0],user_entry[1])
+            user = User(user_entry[0], user_entry[1])
             if (user.password == password):
                 login_user(user)
                 return redirect('/index')
@@ -40,27 +44,22 @@ def login():
 
 @app.route('/index')
 def index():
-    #fake database
-    user = {'login': 'nick'}
+    stboats = Store()
+    stboats.loadboats()
+    boats = stboats.boatsjson
+    return render_template("index.html", title='Home', boats=boats, insea=stboats.insea, notinsea=stboats.notinsea)
 
-    boats = [
-    {
-        "name": u"Николай Иванов",
-        "number": "1234",
-        "sea": False
-    },
-    {
-        "name": u"Анна Зайцева",
-        "number": "54321",
-        "sea": True
-    },
-    {
-        "name": u"Петр Сидоров",
-        "number": "153215",
-        "sea": True
-    }
-    ]
-    return render_template("index.html",
-        title = 'Home',
-        user = user,
-        boats = boats)
+
+@app.route('/boatsjson')
+def boatsjson():
+    b = Store()
+    b.loadboats()
+    return jsonify(boats=b.boatsjson[0], seaornot=b.boatsjson[1])
+
+
+@app.route('/boatssave', methods=['POST'])
+def boatssave():
+    data = request.data
+    b = Store()
+    b.saveboats(data)
+    return data

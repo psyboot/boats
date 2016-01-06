@@ -1,4 +1,4 @@
-<html>
+<html ng-app="myApp">
   <head>
     <meta charset="UTF-8">
     {% if title %}
@@ -6,14 +6,18 @@
     {% else %}
     <title>Home</title>
     {% endif %}
-    <!-- Bootstrap --> 
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/my.css') }}">
+    <script src="{{ url_for('static', filename='js/angular.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/save.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+
   </head>
   <body>
-  <div class="container">
+  <div class="container" ng-controller="saveController">
   <div class="row">
-  <div class="col-sm-12">    
+  <div class="col-sm-12">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>
