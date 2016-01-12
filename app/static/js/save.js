@@ -1,8 +1,7 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller("saveController", function($scope,$http) {
-    $http.get("/boatsjson")
-        .success(function(data)
+    $http.get("/boatsjson",{header : {'Content-Type' : 'application/json; charset=UTF-8'}}).success(function(data)
         {
             $scope.boats = data["boats"];
                 $scope.notinsea = data["seaornot"]["notinsea"];
@@ -15,7 +14,7 @@ myApp.controller("saveController", function($scope,$http) {
     $scope.Save = function (nboats) {
     var boats = {}
     data = nboats
-    $http.post("/boatssave", data)
+    $http.post("/boatssave", data, {header : {'Content-Type' : 'application/json; charset=UTF-8'}})
         .success(function(data)
         {
             console.log('Data send - ' + data);

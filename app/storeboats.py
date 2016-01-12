@@ -13,7 +13,7 @@ class Store():
 
     def loadboats(self):
         try:
-            fileboats = open("data/data.json")
+            fileboats = open("data/data.json", 'r')
         except Exception as e:
             self.errors = "Error loading boats file: " + e
             return self.errors
@@ -25,23 +25,24 @@ class Store():
                 self.notinsea = self.notinsea + 1
         self.boatsjson[1]["insea"] = self.insea
         self.boatsjson[1]["notinsea"] = self.notinsea
-        print(self.boatsjson)
 
     def saveboats(self, data):
-        jsondata = []
         jsdata = json.loads(data)
         for s in jsdata:  # Считаем кто в море, кто нет
-
             if s["sea"] == True:
                 self.insea = self.insea + 1
             else:
                 self.notinsea = self.notinsea + 1
-        jsondata.append(jsdata)
-        jsondata.append({"insea": self.insea, "notinsea": self.notinsea})
-        print(type(data))
+        ss = '{"insea":' + str(self.insea) + ', "notinsea":' + str(self.notinsea) + '}'
+        data = '[' + data + ',' + ss + ']'
+        jsondata = json.loads(data)
         try:
+            # fileboats = io.open("data/data.json", 'w', encoding="utf-8")
             fileboats = open("data/data.json", 'w')
         except Exception as e:
             self.errors = "Error loading boats file: " + e
             return self.errors
-        json.dump(jsondata, fileboats, indent=4, encoding="utf-8")
+        try:
+            json.dump(jsondata, fileboats)
+        except Exception as e:
+            print("Error dump json:" + str(e))
