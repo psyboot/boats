@@ -3,7 +3,7 @@ from flask import render_template, redirect, jsonify, request
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
 from .login import User
 from .forms import LoginForm
-from .storeboats import Store
+from .storeboatssql import Store
 from app import app
 
 login_manager = LoginManager()
@@ -19,7 +19,7 @@ def load_user(userid):
 # @login_required
 def root():
     stboats = Store()
-    stboats.loadboats()
+    stboats.loadboatssql()
     return render_template('indexangular.html',
                            title='Boats!', insea=stboats.insea, notinsea=stboats.notinsea)
 
@@ -54,6 +54,13 @@ def index():
 def boatsjson():
     b = Store()
     b.loadboats()
+    return jsonify(boats=b.boatsjson[0], seaornot=b.boatsjson[1])
+
+
+@app.route('/boatssql')
+def boatssql():
+    b = Store()
+    b.loadboatssql()
     return jsonify(boats=b.boatsjson[0], seaornot=b.boatsjson[1])
 
 
