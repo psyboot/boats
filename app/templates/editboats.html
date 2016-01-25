@@ -1,20 +1,18 @@
-{% extends "base.html" %}
+{% extends "basenosave.html" %}
 {% block content %}
 <h1>Добавление новых данных.</h1>
 <div class="row">
 <div class="col-md-12">
-	<form action="" method="post" name="saveboats">
-      {{ form.hidden_tag() }}
-      <p>
-          Имя:<br>
-          {{ form.name(size=80) }}<br>
-      </p>
-      <p>
-          Номер:<br>
-          {{ form.password(size=80) }}<br>
-      </p>
-      <p><input type="submit" value="СОхранить"></p>
-  </form>
+
+{% from "_formhelper.html" import render_field %}
+<form clas - "form" method=post action="/boatsadd">
+   {{ form.hidden_tag() }}
+  <dl>
+  {{ render_field(form.name)  }}
+  {{ render_field(form.number)  }}
+  </dl>
+  <p><input type="submit" value="Добавить">
+</form>
 </div>
 </div>
 {% endblock %}

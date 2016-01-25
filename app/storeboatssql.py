@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from app import db, models
+from app import models
 # from flask import jsonify
 
 
@@ -20,7 +20,6 @@ class Store():
             self.errors = "Error loading boats from database: " + e
             return self.errors
         for b in boatssql:
-            print("Debug!!!" + b.name + " " + b.number + " " + str(b.sea))
             self.boatsoutsql.append({"name": b.name, "number": b.number,
                                     "sea": b.sea}
                                     )

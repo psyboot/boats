@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, jsonify, request
+from flask import render_template, redirect, jsonify, request, flash, url_for
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
 from .login import User
-from .forms import LoginForm
+from .forms import LoginForm, SaveBoats
 from .storeboatssql import Store
-from app import app
+from app import app, db, models
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -62,6 +62,22 @@ def boatssql():
     b = Store()
     b.loadboatssql()
     return jsonify(boats=b.boatsjson[0], seaornot=b.boatsjson[1])
+
+
+@app.route('/boatsadd', methods=['GET', 'POST'])
+def boatsadd():
+    form = SaveBoats()
+    if form.validate_on_submit():
+        boats = models.Boats(name=form.name.data, number=form.number.data, sea=False)
+        try:
+            db.session.add(boats)
+            db.session.commit()
+            return redirect(url_for('boatsadd'))
+        except Exception as e:
+            flash(e)
+    flash(form.name.data)
+    flash(form.number.data)
+    return render_template('editboats.html', title='add', form=form)
 
 
 @app.route('/boatssave', methods=['POST'])
