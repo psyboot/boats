@@ -31,6 +31,27 @@ class Store():
                 self.notinsea = self.notinsea + 1
         self.boatsjson[1] = {"insea": self.insea, "notinsea": self.notinsea}
 
+    def saveboatssql(self, data):
+        jsdata = json.loads(data)
+        for s in jsdata:  # Считаем кто в море, кто нет
+            if s["sea"] == True:
+                self.insea = self.insea + 1
+            else:
+                self.notinsea = self.notinsea + 1
+        ss = '{"insea":' + str(self.insea) + ', "notinsea":' + str(self.notinsea) + '}'
+        data = '[' + data + ',' + ss + ']'
+        jsondata = json.loads(data)
+        try:
+            # fileboats = io.open("data/data.json", 'w', encoding="utf-8")
+            fileboats = open("data/data.json", 'w')
+        except Exception as e:
+            self.errors = "Error loading boats file: " + e
+            return self.errors
+        try:
+            json.dump(jsondata, fileboats)
+        except Exception as e:
+            print("Error dump json:" + str(e))
+
     def loadboats(self):
         try:
             fileboats = open("data/data.json", 'r')

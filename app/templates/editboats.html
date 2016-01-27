@@ -2,17 +2,36 @@
 {% block content %}
 <h1>Добавление новых данных.</h1>
 <div class="row">
-<div class="col-md-12">
-
+    <div class="col-md-12">
 {% from "_formhelper.html" import render_field %}
-<form clas - "form" method=post action="/boatsadd">
-   {{ form.hidden_tag() }}
-  <dl>
-  {{ render_field(form.name)  }}
-  {{ render_field(form.number)  }}
-  </dl>
-  <p><input type="submit" value="Добавить">
-</form>
+<form class = "form" method=post action="/boatsadd">
+  {{ form.hidden_tag() }}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Номер лодки</th>
+                    <th>Редактировать</th>
+                </tr>
+            </thead>
+  <tr>
+  <td>{{ render_field(form.name)  }} <font color="red">{{ errors['name'] }}</font></td>
+  <td>{{ render_field(form.number)  }} <font color="red">{{ errors['number'] }}</font></td>
+  <td valign="middle">&nbsp;<input type="submit" value="Добавить"></td>
+</tr>
+{% for boat in boats %}
+            <tr class="{% if boat.sea %}seatrue{% else %}seafalse{% endif %}">
+                <td> {{ boat.name }}</td>
+                <td> {{ boat.number }}</td>
+                <td> <a href="/delete/{{ boat.name }}">Удалить.</a></td>
+            </tr>
+{% endfor %}
+        </table>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-12">
 </div>
 </div>
 {% endblock %}

@@ -66,8 +66,19 @@ def boatssql():
 
 @app.route('/boatsadd', methods=['GET', 'POST'])
 def boatsadd():
+    errors = {}
     form = SaveBoats()
+    b = Store()
+    b.loadboatssql()
     if form.validate_on_submit():
+        double_name = db.session.query(models.Boats).filter_by(name=form.name.data).first()
+        double_number = db.session.query(models.Boats).filter_by(number=form.number.data).first()
+        if (double_name or double_number):
+            if double_name:
+                errors['name'] = u"Ошибка! Такое имя есть в базе."
+            if double_number:
+                errors['number'] = u"Ошибка! Такой номер есть в базе."
+            return render_template('editboats.html', title='Add boat',boats=b.boatsjson[0], form=form, errors=errors)
         boats = models.Boats(name=form.name.data, number=form.number.data, sea=False)
         try:
             db.session.add(boats)
@@ -75,9 +86,14 @@ def boatsadd():
             return redirect(url_for('boatsadd'))
         except Exception as e:
             flash(e)
-    flash(form.name.data)
-    flash(form.number.data)
-    return render_template('editboats.html', title='add', form=form)
+    return render_template('editboats.html', title='Add boat', boats=b.boatsjson[0], form=form, errors=errors)
+
+
+@app.route('/delete/<name>')
+def delete(name):
+    db.session.query(models.Boats).filter_by(name=name).delete()
+    db.session.commit()
+    return redirect(url_for('boatsadd'))
 
 
 @app.route('/boatssave', methods=['POST'])

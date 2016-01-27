@@ -1,2 +1,2 @@
-flaskboats\Scripts\python.exe run.py
+flaskpoll\Scripts\python.exe run.py
 pause

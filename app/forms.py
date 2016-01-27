@@ -11,5 +11,5 @@ class LoginForm(Form):
 
 
 class SaveBoats(Form):
-    name = StringField(u'Имя владельца:', validators=[DataRequired()])
-    number = IntegerField(u'Номер лодки:', validators=[DataRequired()])
+    name = StringField(validators=[DataRequired()])
+    number = IntegerField(validators=[DataRequired()])
