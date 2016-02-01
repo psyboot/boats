@@ -78,7 +78,7 @@ def boatsadd():
                 errors['name'] = u"Ошибка! Такое имя есть в базе."
             if double_number:
                 errors['number'] = u"Ошибка! Такой номер есть в базе."
-            return render_template('editboats.html', title='Add boat',boats=b.boatsjson[0], form=form, errors=errors)
+            return render_template('editboats.html', title='Add boat', boats=b.boatsjson[0], form=form, errors=errors)
         boats = models.Boats(name=form.name.data, number=form.number.data, sea=False)
         try:
             db.session.add(boats)
@@ -89,9 +89,18 @@ def boatsadd():
     return render_template('editboats.html', title='Add boat', boats=b.boatsjson[0], form=form, errors=errors)
 
 
-@app.route('/delete/<name>')
+@app.route('/delete/<name>/<number>')
 def delete(name):
     db.session.query(models.Boats).filter_by(name=name).delete()
+    db.session.commit()
+    return redirect(url_for('boatsadd'))
+
+
+@app.route('/edit/', methods=['GET'])
+def edit():
+    name = request.args.get('name')
+    number = request.args.get('number')
+    db.session.query(models.Boats).filter_by(name=name).update({"number": number})
     db.session.commit()
     return redirect(url_for('boatsadd'))
 
