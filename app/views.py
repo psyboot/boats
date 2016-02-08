@@ -89,20 +89,28 @@ def boatsadd():
     return render_template('editboats.html', title='Add boat', boats=b.boatsjson[0], form=form, errors=errors)
 
 
-@app.route('/delete/<name>/<number>')
-def delete(name):
-    db.session.query(models.Boats).filter_by(name=name).delete()
+@app.route('/delete/', methods=['GET'])
+def delete():
+    db.session.query(models.Boats).filter_by(name=request.args.get('name')).delete()
     db.session.commit()
     return redirect(url_for('boatsadd'))
 
 
-@app.route('/edit/', methods=['GET'])
+@app.route('/edit/', methods=['GET', 'POST'])
 def edit():
+    errors = {}
+    form = SaveBoats()
     name = request.args.get('name')
     number = request.args.get('number')
-    db.session.query(models.Boats).filter_by(name=name).update({"number": number})
-    db.session.commit()
-    return redirect(url_for('boatsadd'))
+    id_ = db.session.query(models.Boats).filter_by(name=form.name.data).first()
+    if form.validate_on_submit():
+        try:
+            db.session.query(models.Boats).filter_by(id=id_.id).update({"number": form.number.data})
+            db.session.commit()
+            return redirect(url_for('boatsadd'))
+        except Exception as e:
+            flash(e)
+    return render_template('editsingleboat.html', title='Edit boat', name=name, number=number, form=form, errors=errors)
 
 
 @app.route('/boatssave', methods=['POST'])

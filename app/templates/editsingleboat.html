@@ -3,15 +3,15 @@
 <h1>Вход.</h1>
 <div class="row">
 <div class="col-md-12">
-	<form action="" method="post" name="saveboats">
+	<form action="/edit/" method=post>
       {{ form.hidden_tag() }}
       <p>
           Имя:<br>
-          {{ form.name(size=80) }}<br>
+          {{ form.name(size=80, value=name) }}<font color="red">{{ errors['name'] }} {{  }}</font><br>
       </p>
       <p>
           Номер:<br>
-          {{ form.number(size=80) }}<br>
+          {{ form.number(size=80, value=number) }}<font color="red">{{ errors['number'] }}</font><br>
       </p>
       <p><input type="submit" value="Сохранить"></p>
   </form>

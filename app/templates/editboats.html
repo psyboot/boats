@@ -24,8 +24,7 @@
             <tr class="{% if boat.sea %}seatrue{% else %}seafalse{% endif %}">
                 <td> {{ boat.name }}</td>
                 <td> {{ boat.number }}</td>
-                <td> <a href="/edit/?name={{ boat.name }}&number={{ boat.number }}">Редактировать.</a>&nbsp;<a href="/delete/{{ boat.name }}">Удалить.</a>
-                <a href="/edit/?name={{ boat.name }}&number={{ boat.number }}">Редактировать.</a>&nbsp;<a href="/delete/{{ boat.name }}">Удалить.</a>
+                <td><a href="{{ url_for('edit',name=boat.name,number=boat.number) }}">Редактировать.</a>&nbsp;<a href="{{ url_for('delete',name=boat.name) }}">Удалить.</a>
                 </td>
             </tr>
 {% endfor %}
