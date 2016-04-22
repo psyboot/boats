@@ -71,6 +71,7 @@ class Store():
         jsdata = json.loads(data)
         for s in jsdata:  # Считаем кто в море, кто нет
             if s["sea"] == True:
+                print("TRue true!!")
                 self.insea = self.insea + 1
             else:
                 self.notinsea = self.notinsea + 1

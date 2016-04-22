@@ -13,15 +13,15 @@ myApp.controller("saveController", function($scope,$http) {
 
     $scope.Save = function (nboats) {
     var boats = {}
-    data = nboats
-    $http.post("/boatssave", data, {header : {'Content-Type' : 'application/json; charset=UTF-8'}})
-        .success(function(data)
+    // data = nboats
+    $http.post("/boatssave", nboats, {header : {'Content-Type' : 'application/json; charset=UTF-8'}})
+        .success(function(nboats)
         {
-            console.log('Data send - ' + data);
+            console.log("Data send:");
         })
-        .error(function(data)
+        .error(function(nboats)
         {
-            console.log('error' + data);
+            console.log('error' + nboats);
         });
     $scope.notinsea = 0;
     $scope.insea = 0;

@@ -5,6 +5,7 @@ from .login import User
 from .forms import LoginForm, SaveBoats
 from .storeboatssql import Store
 from app import app, db, models
+import json
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -40,14 +41,6 @@ def login():
     return render_template('login.html',
                            title='Sign In',
                            form=form)
-
-
-@app.route('/index')
-def index():
-    stboats = Store()
-    stboats.loadboats()
-    boats = stboats.boatsjson
-    return render_template("index.html", title='Home', boats=boats, insea=stboats.insea, notinsea=stboats.notinsea)
 
 
 @app.route('/boatsjson')
@@ -110,12 +103,19 @@ def edit():
             return redirect(url_for('boatsadd'))
         except Exception as e:
             flash(e)
-    return render_template('editsingleboat.html', title='Edit boat', name=name, number=number, form=form, errors=errors)
+    return render_template('editsingleboat.html', title='Edit boat', name=name, number=number,
+                           form=form, errors=errors)
 
 
 @app.route('/boatssave', methods=['POST'])
 def boatssave():
-    data = request.data
-    b = Store()
-    b.saveboats(data)
-    return data
+    data = request.get_json()
+    name = data['name']
+    number = data['number']
+    id_ = db.session.query(models.Boats).filter_by(name=name).first()
+    try:
+        db.session.query(models.Boats).filter_by(id=id_.id).update({"sea": data['sea']})
+        db.session.commit()
+    except Exception as e:
+        flash(e)
+    return redirect(url_for('root'))

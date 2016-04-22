@@ -20,7 +20,7 @@
         <tr class="sea{{todo.sea}}" ng-repeat="todo in boats">
             <td>{{todo.name}}</td>
             <td>{{todo.number}}</td>
-            <td><input type="checkbox" ng-model="todo.sea" ng-click="Save(boats)"></td>
+            <td><input type="checkbox" ng-model="todo.sea" ng-click="Save(todo)"></td>
         </tr>
     {% endraw %}
     </table>
