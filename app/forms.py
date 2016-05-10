@@ -13,3 +13,5 @@ class LoginForm(Form):
 class SaveBoats(Form):
     name = StringField(validators=[DataRequired()])
     number = IntegerField(validators=[DataRequired()])
+    pier = IntegerField(validators=[DataRequired()])
+    license = StringField(validators=[DataRequired()])

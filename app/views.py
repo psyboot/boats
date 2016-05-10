@@ -10,6 +10,9 @@ import json
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+@app.before_request
+def before_request():
+    g.user = current_user
 
 @login_manager.user_loader
 def load_user(userid):
@@ -43,6 +46,12 @@ def login():
                            form=form)
 
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+
 @app.route('/boatsjson')
 def boatsjson():
     b = Store()
@@ -54,7 +63,13 @@ def boatsjson():
 def boatssql():
     b = Store()
     b.loadboatssql()
-    return jsonify(boats=b.boatsjson[0], seaornot=b.boatsjson[1])
+    # print ("b: ",b.boatsjson[0])
+    boatsjs=""
+    seaornotjs=""
+    if(b.boatsjson):
+        boatsjs=b.boatsjson[0]
+        seaornotjs=b.boatsjson[1]
+    return jsonify(boats=boatsjs, seaornot=seaornotjs)
 
 
 @app.route('/boatsadd', methods=['GET', 'POST'])
@@ -72,14 +87,17 @@ def boatsadd():
             if double_number:
                 errors['number'] = u"Ошибка! Такой номер есть в базе."
             return render_template('editboats.html', title='Add boat', boats=b.boatsjson[0], form=form, errors=errors)
-        boats = models.Boats(name=form.name.data, number=form.number.data, sea=False)
+        boats = models.Boats(name=form.name.data, number=form.number.data, pier=form.pier.data, license=form.license.data, sea=False)
         try:
             db.session.add(boats)
             db.session.commit()
             return redirect(url_for('boatsadd'))
         except Exception as e:
             flash(e)
-    return render_template('editboats.html', title='Add boat', boats=b.boatsjson[0], form=form, errors=errors)
+    boatsjs=""
+    if(b.boatsjson):
+        boatsjs=b.boatsjson[0]
+    return render_template('editboats.html', title='Add boat', boats=boatsjs, form=form, errors=errors)
 
 
 @app.route('/delete/', methods=['GET'])
@@ -95,15 +113,17 @@ def edit():
     form = SaveBoats()
     name = request.args.get('name')
     number = request.args.get('number')
+    pier = request.args.get('pier')
+    license = request.args.get('license')
     id_ = db.session.query(models.Boats).filter_by(name=form.name.data).first()
     if form.validate_on_submit():
         try:
-            db.session.query(models.Boats).filter_by(id=id_.id).update({"number": form.number.data})
+            db.session.query(models.Boats).filter_by(id=id_.id).update({"number": form.number.data,"name": form.name.data, "pier": form.pier.data, "license": form.license.data})
             db.session.commit()
             return redirect(url_for('boatsadd'))
         except Exception as e:
             flash(e)
-    return render_template('editsingleboat.html', title='Edit boat', name=name, number=number,
+    return render_template('editsingleboat.html', title='Edit boat', name=name, number=number, pier=pier, license=license,
                            form=form, errors=errors)
 
 
@@ -112,6 +132,8 @@ def boatssave():
     data = request.get_json()
     name = data['name']
     number = data['number']
+    pier = data['pier']
+    license = data['license']
     id_ = db.session.query(models.Boats).filter_by(name=name).first()
     try:
         db.session.query(models.Boats).filter_by(id=id_.id).update({"sea": data['sea']})

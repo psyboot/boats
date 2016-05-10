@@ -1,22 +1,9 @@
 [
 [{
+    "pier": "1",
     "name": "Николай Иванов",
     "number": "1234",
+    "license": "ХО235868",
     "sea": false
 },
-{
-    "name": "Анна Зайцева",
-    "number": "54321",
-    "sea": true
-},
-{
-    "name": "Петр Сидоров",
-    "number": "153215",
-    "sea": true
-}
-],
-{
-    "insea": 0,
-    "notinsea": 0
-}
 ]

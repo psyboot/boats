@@ -1,30 +1,35 @@
 {% extends "basenosave.html" %}
 {% block content %}
-<h1>Добавление новых данных.</h1>
+<h3>Добавление/редактирование данных о лодках.</h3>
 <div class="row">
     <div class="col-md-12">
 {% from "_formhelper.html" import render_field %}
 <form class = "form" method=post action="/boatsadd">
   {{ form.hidden_tag() }}
-
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Имя</th>
-                    <th>Номер лодки</th>
-                    <th>Редактировать</th>
+                  <th>№ стоянки</th>
+                  <th>Номер лодки</th>
+                  <th>Имя</th>
+                  <th>Водительское удостоверение</th>
+                  <th></th>
                 </tr>
             </thead>
   <tr>
-  <td>{{ render_field(form.name)  }} <font color="red">{{ errors['name'] }}</font></td>
+  <td>{{ render_field(form.pier)  }} <font color="red">{{ errors['pier'] }}</font></td>  
   <td>{{ render_field(form.number)  }} <font color="red">{{ errors['number'] }}</font></td>
+  <td>{{ render_field(form.name)  }} <font color="red">{{ errors['name'] }}</font></td>
+  <td>{{ render_field(form.license)  }} <font color="red">{{ errors['license'] }}</font></td>
   <td valign="middle">&nbsp;<input type="submit" value="Добавить"></td>
 </tr>
 {% for boat in boats %}
             <tr class="{% if boat.sea %}seatrue{% else %}seafalse{% endif %}">
-                <td> {{ boat.name }}</td>
+                <td> {{ boat.pier }}</td>
                 <td> {{ boat.number }}</td>
-                <td><a href="{{ url_for('edit',name=boat.name,number=boat.number) }}">Редактировать.</a>&nbsp;<a href="{{ url_for('delete',name=boat.name) }}">Удалить.</a>
+                <td> {{ boat.name }}</td>
+                <td> {{ boat.license }}</td>
+                <td><a href="{{ url_for('edit',name=boat.name,number=boat.number,license=boat.license,pier=boat.pier) }}">Редактировать.</a>&nbsp;<a href="{{ url_for('delete',name=boat.name) }}">Удалить.</a>
                 </td>
             </tr>
 {% endfor %}
