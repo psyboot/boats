@@ -16,7 +16,6 @@ class Store():
     def loadboatssql(self):
         try:
             boatssql = models.Boats.query.all()
-            print ("Boatssql: ", boatssql)
         except Exception as e:
             self.errors = "Error loading boats from database: " + str(e)
             return self.errors

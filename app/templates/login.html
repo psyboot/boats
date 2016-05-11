@@ -6,15 +6,15 @@
 	<form action="" method="post" name="saveboats">
       {{ form.hidden_tag() }}
       <p>
-          Имя:<br>
-          {{ form.name(size=80) }}<br>
+          Логин:<br>
+          {{ form.login(size=80) }}<br>
       </p>
       <p>
-          Номер:<br>
+          Пароль:<br>
           {{ form.password(size=80) }}<br>
       </p>
       <p>{{ form.remember_me }} Remember Me</p>
-      <p><input type="submit" value="Сохранить"></p>
+      <p><input type="submit" value="Войти"></p>
   </form>
 </div>
 </div>

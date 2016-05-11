@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, jsonify, request, flash, url_for
+from flask import render_template, redirect, jsonify, request, flash, url_for, g
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
 from .login import User
 from .forms import LoginForm, SaveBoats
@@ -37,12 +37,15 @@ def login():
         remember_me = str(form.remember_me.data)
         user_entry = User.get(login)
         if (user_entry is not None):
-            user = User(user_entry[0], user_entry[1])
+            user = User(user_entry[0], user_entry[1])            
             if (user.password == password):
                 login_user(user)
-                return redirect('/index')
+                print ("user:", g.user.id)
+                return redirect(url_for('root'))
+            else:
+                return redirect(url_for('login'))
     return render_template('login.html',
-                           title='Sign In',
+                           title="Login.",
                            form=form)
 
 
@@ -73,6 +76,7 @@ def boatssql():
 
 
 @app.route('/boatsadd', methods=['GET', 'POST'])
+@login_required
 def boatsadd():
     errors = {}
     form = SaveBoats()

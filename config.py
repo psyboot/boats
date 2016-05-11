@@ -9,3 +9,7 @@ CSRF_ENABLED = True
 SECRET_KEY = "tnt"
 MONGO_DB_IP = "127.0.0.1"
 MONGO_DB_PORT = 27017
+
+USERS = {"john": ("john", "pass"),
+               "JaneDoe": ("JaneDoe", "Jane"),
+               "admin": ("admin", "admin")}
