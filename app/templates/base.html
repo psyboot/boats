@@ -29,7 +29,7 @@
     {% endwith %}
    </div>
    </div>
-   | <a href="{{ url_for('root') }}">Главная</a> | <a href="{{ url_for('login') }}">Вход</a> | Пользователь: {{ current_user.id }} {% if g.user  %} {{ g.user.id }} <a href="{{ url_for('boatsadd') }}">Добавить</a> |{% endif %}
+   {% if session['user_id'] %} Пользователь: <b> {{session['user_id']}} </b> <a href="{{ url_for('logout') }}">Выход</a>{% else %} | <a href="{{ url_for('login') }}">Вход</a> {% endif %} | <a href="{{ url_for('root') }}">Главная</a> | {% if session['user_id']=='admin'  %} <a href="{{ url_for('boatsadd') }}">Добавить</a> | {% endif %}
     {% block content %}{% endblock %}
     </div>
   </body>

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, jsonify, request, flash, url_for, g
+from flask import render_template, redirect, jsonify, request, flash, url_for, g, session
 from flask.ext.login import LoginManager, login_required, login_user, logout_user, current_user
 from .login import User
 from .forms import LoginForm, SaveBoats
@@ -12,21 +12,11 @@ login_manager.init_app(app)
 
 @app.before_request
 def before_request():
-    g.user = current_user
-
-@login_manager.user_loader
-def load_user(userid):
-    return redirect('/login')
-
-
-@app.route('/')
-# @login_required
-def root():
-    stboats = Store()
-    stboats.loadboatssql()
-    return render_template('indexangular.html',
-                           title='Boats!', insea=stboats.insea, notinsea=stboats.notinsea)
-
+    if ('user_id' in session):
+        g.user = current_user
+    else:
+        session['user_id'] = ""  # Make it better, use an anonymous User instead
+    #g.user = current_user
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -40,9 +30,9 @@ def login():
             user = User(user_entry[0], user_entry[1])            
             if (user.password == password):
                 login_user(user)
-                print ("user:", g.user.id)
                 return redirect(url_for('root'))
             else:
+                flash(u'Неверный пароль или логин.')
                 return redirect(url_for('login'))
     return render_template('login.html',
                            title="Login.",
@@ -52,8 +42,21 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('root'))
 
+@login_manager.user_loader
+def load_user(userid):
+    return redirect('/login')
+
+
+@app.route('/')
+# @login_required
+def root():
+    print ("session:", session) # debug
+    stboats = Store()
+    stboats.loadboatssql()
+    return render_template('indexangular.html',
+                           title='Boats!', insea=stboats.insea, notinsea=stboats.notinsea)
 
 @app.route('/boatsjson')
 def boatsjson():

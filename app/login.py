@@ -3,7 +3,7 @@ from flask.ext.login import UserMixin
 
 class User(UserMixin):
     # proxy for a database of users "login": ("Name", "Password")
-    user_database = {"login": ("login", "pass"),
+    user_database = {"login": (u"Николай", "pass"),
                "jane": ("JaneDoe", "Jane"),
                "admin": ("admin", "admin")}
 
@@ -14,7 +14,7 @@ class User(UserMixin):
     @classmethod
     def get(cls,id):
         # return cls.user_database.get(id)
-        if cls.user_database[id]:
+        if id in cls.user_database:
             return cls.user_database[id]
         else:
-            return None
+            return "anonymous"
