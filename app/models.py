@@ -16,11 +16,12 @@ class User(db.Model):
 
 class Boats(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    pier = db.Column(db.Integer()) # номер стоянки
-    name = db.Column(db.String(140)) # Ф.И.О.
-    number = db.Column(db.String(50)) # Судовой номер
-    sea = db.Column(db.Boolean, unique=False, default=False) # В море (True), на причале (False)
-    license = db.Column(db.String(50)) # Номер водительского удостоверения
+    pier = db.Column(db.Integer())  # номер стоянки
+    name = db.Column(db.String(140))  # Ф.И.О.
+    number = db.Column(db.String(50))  # Судовой номер
+    sea = db.Column(db.Boolean, unique=False,
+                    default=False)  # В море (True), на причале (False)
+    license = db.Column(db.String(50))  # Номер водительского удостоверения
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
