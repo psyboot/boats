@@ -4,6 +4,7 @@
 *.pyc
 *.*sublime*
 /boats/*
+app.db
 *.db
 .gitignore
 /db_repository/*

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Вход.</h1>
+<h3>Изменение информации о лодке.</h3>
 <div class="row">
 <div class="col-md-12">
 	<form action="/edit/" method=post>
@@ -12,6 +12,14 @@
       <p>
           Номер:<br>
           {{ form.number(size=80, value=number) }}<font color="red">{{ errors['number'] }}</font><br>
+      </p>
+      <p>
+          Номер стоянки:<br>
+          {{ form.pier(size=80, value=pier) }}<font color="red">{{ errors['pier'] }}</font><br>
+      </p>
+      <p>
+          Водительское удостоверение:<br>
+          {{ form.license(size=80, value=license) }}<font color="red">{{ errors['license'] }}</font><br>
       </p>
       <p><input type="submit" value="Сохранить"></p>
   </form>

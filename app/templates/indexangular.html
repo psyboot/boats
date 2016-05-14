@@ -11,15 +11,19 @@
     <table class="table table-striped">
     <thead>
         <tr >
-            <th>Имя</th>
+            <th>№ стоянки</th>
             <th>Номер лодки</th>
+            <th>Имя</th>
+            <th>Водительское удостоверение</th>
             <th>В море?</th>
         </tr>
     </thead>
     {% raw %}
         <tr class="sea{{todo.sea}}" ng-repeat="todo in boats">
-            <td>{{todo.name}}</td>
+            <td>{{todo.pier}}</td>
             <td>{{todo.number}}</td>
+            <td>{{todo.name}}</td>
+            <td>{{todo.license}}</td>
             <td><input type="checkbox" ng-model="todo.sea" ng-click="Save(todo)"></td>
         </tr>
     {% endraw %}

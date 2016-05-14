@@ -17,10 +17,10 @@ class Store():
         try:
             boatssql = models.Boats.query.all()
         except Exception as e:
-            self.errors = "Error loading boats from database: " + e
+            self.errors = "Error loading boats from database: " + str(e)
             return self.errors
         for b in boatssql:
-            self.boatsoutsql.append({"name": b.name, "number": b.number,
+            self.boatsoutsql.append({"pier": b.pier, "name": b.name, "number": b.number, "license": b.license,
                                     "sea": b.sea}
                                     )
         self.boatsjson[0] = self.boatsoutsql
