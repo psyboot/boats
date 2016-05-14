@@ -28,6 +28,7 @@ def root():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    errors = {}
     if form.validate_on_submit():
         login = form.login.data
         password = form.password.data
@@ -37,9 +38,12 @@ def login():
             user = User(user_entry[0], user_entry[1])
             if (user.password == password):
                 login_user(user)
-                return redirect('/index')
+                return redirect(url_for('root'))
+        errors['namepass'] = u'Неправильно введено имя пользователя или пароль.'
+    errors['fields'] = u'Заполните все поля.'
     return render_template('login.html',
                            title='Sign In',
+                           errors=errors,
                            form=form)
 
 
