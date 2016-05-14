@@ -5,6 +5,7 @@
 *.*sublime*
 /boats/*
 app.db
+/logs/*
 *.db
 .gitignore
 /db_repository/*

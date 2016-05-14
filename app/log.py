@@ -1,7 +1,17 @@
 # -*- coding: utf-8 -*-
-from  import 
+import datetime
+import os
 
 class Log():
-    def __init__(self, username, password):
-        self.id = username
-        self.password = password
+    def __init__(self):
+        pass
+
+    def log(self, name, line):
+        name_file = 'logs/' + name + '_' + str(datetime.datetime.now().strftime('%y_%m_%d') + '.txt')
+        print "*****: ", line
+        try:
+            lfile = open(name_file,'a')
+            lfile.write(line.encode('cp1251') + "\n")
+            lfile.close()
+        except Exception as e:
+            print(str(e))

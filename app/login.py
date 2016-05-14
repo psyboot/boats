@@ -3,9 +3,9 @@ from flask.ext.login import UserMixin
 
 class User(UserMixin):
     # proxy for a database of users "login": ("Name", "Password")
-    user_database = {"login": (u"Николай", "pass"),
-               "jane": ("JaneDoe", "Jane"),
-               "admin": ("admin", "admin")}
+    user_database = {"nick": (u"Николай", "pass"),
+               "user": (u"Иван Иванов", "user"),
+               "admin": (u"admin", "admin")}
 
     def __init__(self, username, password):
         self.id = username

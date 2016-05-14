@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -13,3 +14,6 @@ MONGO_DB_PORT = 27017
 USERS = {"john": ("john", "pass"),
                "JaneDoe": ("JaneDoe", "Jane"),
                "admin": ("admin", "admin")}
+
+IN = u"Пришла на стоянку."
+FROM = u"Вышла со стоянки."

@@ -20,9 +20,7 @@ class Store():
             self.errors = "Error loading boats from database: " + str(e)
             return self.errors
         for b in boatssql:
-            self.boatsoutsql.append({"pier": b.pier, "name": b.name, "number": b.number, "license": b.license,
-                                    "sea": b.sea}
-                                    )
+            self.boatsoutsql.append({"pier": b.pier, "name": b.name, "number": b.number, "license": b.license, "sea": b.sea})
         self.boatsjson[0] = self.boatsoutsql
         for s in self.boatsoutsql:  # Считаем кто в море, кто нет
             if s["sea"] == True:
