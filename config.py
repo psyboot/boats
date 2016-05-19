@@ -12,8 +12,8 @@ MONGO_DB_IP = "127.0.0.1"
 MONGO_DB_PORT = 27017
 
 USERS = {"john": ("john", "pass"),
-               "JaneDoe": ("JaneDoe", "Jane"),
-               "admin": ("admin", "admin")}
+         "JaneDoe": ("JaneDoe", "Jane"),
+         "admin": ("admin", "admin")}
 
 IN = u"Пришла на стоянку."
 FROM = u"Вышла со стоянки."

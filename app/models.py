@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 
 from app import db
+from flask.ext.login import UserMixin
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     nickname = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     boats = db.relationship('Boats', backref='author', lazy='dynamic')
+
     def __repr__(self):
         return '<User %r>' % (self.nickname)
 
@@ -22,6 +24,7 @@ class Boats(db.Model):
                     default=False)  # В море (True), на причале (False)
     license = db.Column(db.String(50))  # Номер водительского удостоверения
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
     def __repr__(self):
         return '<Boats %r>' % (self.name)
 

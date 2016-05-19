@@ -13,16 +13,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
-@app.before_request
-def before_request():
-    if ('user_id' in session):
-        g.user = current_user
-    else:
-        # Make it better, use an anonymous User instead
-        session['user_id'] = ""
-    # g.user = current_user
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -40,9 +30,9 @@ def login():
         errors['namepass'] = u'Неправильно введено имя пользователя или пароль.'
         errors['fields'] = u'Заполните все поля.'
         return render_template('login.html',
-                           title='Sign In',
-                           errors=errors,
-                           form=form)
+                               title='Sign In',
+                               errors=errors,
+                               form=form)
     return render_template('login.html',
                            title="Login.",
                            errors=errors,
@@ -61,7 +51,7 @@ def load_user(userid):
 
 
 @app.route('/')
-# @login_required
+@login_required
 def root():
     print ("session:", session)  # debug
     stboats = Store()
@@ -93,7 +83,8 @@ def boatssql():
 
 @app.route('/boatsadd', methods=['GET', 'POST'])
 def boatsadd():
-    if (('user_id' in session) and (session['user_id'] != 'admin')): # Пускаем только админа
+    # Пускаем только админа
+    if (('user_id' in session) and (session['user_id'] != 'admin')):
         return redirect(url_for('root'))
     errors = {}
     form = SaveBoats()
@@ -130,7 +121,8 @@ def boatsadd():
 
 @app.route('/delete/', methods=['GET'])
 def delete():
-    if (('user_id' in session) and (session['user_id'] != 'admin')): # Пускаем только админа
+    # Пускаем только админа
+    if (('user_id' in session) and (session['user_id'] != 'admin')):
         return redirect(url_for('root'))
     db.session.query(models.Boats).filter_by(
         name=request.args.get('name')).delete()
@@ -140,7 +132,8 @@ def delete():
 
 @app.route('/edit/', methods=['GET', 'POST'])
 def edit():
-    if (('user_id' in session) and (session['user_id'] != 'admin')): # Пускаем только админа
+    # Пускаем только админа
+    if (('user_id' in session) and (session['user_id'] != 'admin')):
         return redirect(url_for('root'))
     errors = {}
     form = SaveBoats()
@@ -185,14 +178,15 @@ def boatssave():
     # state = models.SeaChanged(state=statetxt, number=number, datechanged=datetime.datetime.now())
     # db.session.add(state)
     # db.session.commit()
-    logline = str(datetime.datetime.now().strftime('%d.%m.%y  %H:%M')) + u': Лодка ' + number + ' ' + statetxt
-    print "logline: ",logline
+    logline = str(datetime.datetime.now().strftime(
+        '%d.%m.%y  %H:%M')) + u': Лодка ' + number + ' ' + statetxt
+    print "logline: ", logline
     log = Log()
     log.log(session['user_id'], logline)
     return redirect(url_for('root'))
 
 
-@app.route('/log', methods=['POST','GET'])
+@app.route('/log', methods=['POST', 'GET'])
 def log():
     datalog = db.session.query(models.SeaChanged).all()
     print " ".join(datalog)
