@@ -1,0 +1,14 @@
+{% extends "basenosave.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+    <h3> Логи </h3>
+	{% for name, log in logfiles.iteritems() %}
+		<h4 style="color:blue;">{{ name }}</h4>
+		{% for l in log %}
+		<p> {{ l }} </p>
+		{% endfor %}
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}

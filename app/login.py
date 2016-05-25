@@ -12,10 +12,14 @@ class User(UserMixin):
         self.id = username
         self.password = password
 
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return True
+
     @classmethod
     def get(cls, id):
         # return cls.user_database.get(id)
         if id in cls.user_database:
             return cls.user_database[id]
-        #else:
-            #return "anonymous"

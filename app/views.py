@@ -16,7 +16,7 @@ login_manager.init_app(app)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    errors = {}
+    errors = {} 
     if form.validate_on_submit():
         login = form.login.data
         password = form.password.data
@@ -47,13 +47,14 @@ def logout():
 
 @login_manager.user_loader
 def load_user(userid):
-    return redirect('/login')
+    u = User.get(userid)
+    print(u)
 
 
 @app.route('/')
 @login_required
 def root():
-    print ("session:", session)  # debug
+    print ("authenticated:", current_user.is_authenticated)  # debug
     stboats = Store()
     stboats.loadboatssql()
     return render_template('indexangular.html',
@@ -191,3 +192,9 @@ def log():
     datalog = db.session.query(models.SeaChanged).all()
     print " ".join(datalog)
     return " ".join(datalog)
+
+@app.route('/getlogs', methods=['POST', 'GET'])
+def getlogs():
+    logs = Log()
+    logfiles = logs.getlogs()
+    return render_template('showlogs.html', title='Logs', logfiles=logfiles)
